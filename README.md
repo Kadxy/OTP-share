@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="src/app/icon.svg" alt="OTP Share Logo" width="80" height="80" />
+<img src="/public/icon.svg" alt="OTP Share Logo" width="80" height="80" />
 
 **Client-Side Generation · Zero Secret Exposure · Ephemeral Sharing**
 
@@ -10,7 +10,7 @@ Generate 2FA tokens in your browser and share them via secure, one-time links wi
 
 [Report Bug](https://github.com/Kadxy/OTP-share/issues) · [Request Feature](https://github.com/Kadxy/OTP-share/issues)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FKadxy%2FOTP-share&env=PRISMA_DATABASE_URL,DATABASE_URL)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FKadxy%2FOTP-share&env=PRISMA_DATABASE_URL)
 
 </div>
 
