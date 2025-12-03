@@ -37,7 +37,6 @@ export function TokenDisplay({ token, progress, timeLeft, isValid }: Props) {
 
     return (
         <div className="relative w-full p-8 pt-4 min-h-[180px] flex flex-col justify-center">
-            {/* Outer Container (Border) */}
             <div
                 onClick={handleCopy}
                 className={clsx(
@@ -48,30 +47,20 @@ export function TokenDisplay({ token, progress, timeLeft, isValid }: Props) {
                         : "bg-transparent"
                 )}
             >
-                {/* Inner Container (Canvas) */}
                 <div className={clsx(
-                    // 1. [mask-image]: 强制浏览器进行像素级遮罩修复，专门解决左上角那个坏点
-                    // 2. isolate: 建立新的堆叠上下文
                     "relative w-full h-full rounded-[14px] overflow-hidden isolate [mask-image:linear-gradient(white,white)]",
                     isValid ? "bg-white" : "bg-gray-50"
                 )}>
 
                     {isValid ? (
                         <>
-                            {/* Progress Bar Container */}
                             <div className="absolute top-0 left-0 w-full h-1.5 bg-gray-100/50 z-0">
-                                {/* 关键修改：
-                                    给进度条加 rounded-tl-[14px] (左上圆角)。
-                                    不要只依赖父级的 overflow-hidden 裁剪，自己主动变圆，
-                                    这样浏览器在渲染左上角时，就是“圆角对圆角”，不会有亚像素锯齿。
-                                */}
                                 <div
                                     className={clsx("h-full transition-all duration-1000 ease-linear rounded-tl-[14px]", activeBgClass)}
                                     style={{ width: `${progress}%` }}
                                 />
                             </div>
 
-                            {/* Token Text */}
                             <div className="absolute inset-0 flex flex-col items-center justify-center z-0">
                                 <div className={clsx("text-5xl font-mono font-bold tracking-[0.15em] tabular-nums transition-colors duration-300", activeColorClass)}>
                                     {token.slice(0, Math.ceil(token.length / 2))}
@@ -87,7 +76,6 @@ export function TokenDisplay({ token, progress, timeLeft, isValid }: Props) {
                         </div>
                     )}
 
-                    {/* Copied Overlay */}
                     <div className={clsx(
                         "absolute inset-0 z-10 flex flex-col items-center justify-center bg-white transition-all duration-200",
                         copied ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"

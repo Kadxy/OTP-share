@@ -16,7 +16,6 @@ export function SharePanel({ secret, params }: Props) {
     const [urlCopied, setUrlCopied] = useState(false);
     const [isCreating, setIsCreating] = useState(false);
 
-    // 1. 复制 Public Link
     const handleCopyPublicUrl = () => {
         if (typeof window !== 'undefined') {
             navigator.clipboard.writeText(window.location.href);
@@ -25,7 +24,6 @@ export function SharePanel({ secret, params }: Props) {
         }
     };
 
-    // 2. 创建 Secure Link
     const handleCreateSecureLink = async () => {
         setIsCreating(true);
 
@@ -65,7 +63,6 @@ export function SharePanel({ secret, params }: Props) {
         }
     };
 
-    // 小组件：带复制功能的输入框
     const UrlCopyBox = ({ url }: { url: string }) => {
         const [copied, setCopied] = useState(false);
         return (
@@ -84,7 +81,7 @@ export function SharePanel({ secret, params }: Props) {
                         setTimeout(() => setCopied(false), 2000);
                     }}
                     className={clsx(
-                        "p-2 rounded-lg transition-all shadow-sm border cursor-pointer", // Added cursor-pointer
+                        "p-2 rounded-lg transition-all shadow-sm border cursor-pointer",
                         copied
                             ? "bg-green-50 text-green-600 border-green-200"
                             : "bg-white text-gray-700 hover:text-black border-gray-100 hover:border-gray-300"
@@ -96,12 +93,9 @@ export function SharePanel({ secret, params }: Props) {
         );
     };
 
-    // --- 渲染逻辑 ---
-
     if (step === 'menu') {
         return (
             <div className="w-full flex flex-col justify-center animate-in fade-in zoom-in-95 duration-300 space-y-6">
-                {/* Public Link Section */}
                 <div className="space-y-2">
                     <div className="flex items-center gap-2 mb-1">
                         <Globe size={14} className="text-blue-500" />
@@ -118,7 +112,7 @@ export function SharePanel({ secret, params }: Props) {
                         <button
                             onClick={handleCopyPublicUrl}
                             className={clsx(
-                                "p-2 rounded-lg transition-all shadow-sm border cursor-pointer", // Added cursor-pointer
+                                "p-2 rounded-lg transition-all shadow-sm border cursor-pointer",
                                 urlCopied ? "bg-green-50 text-green-600 border-green-200" : "bg-white text-gray-700 hover:text-black border-gray-100 hover:border-gray-300"
                             )}
                         >
@@ -128,7 +122,6 @@ export function SharePanel({ secret, params }: Props) {
                     <p className="text-[10px] text-gray-400 px-1">Contains secret key in plain text. Share with caution.</p>
                 </div>
 
-                {/* Secure Link Entry */}
                 <div className="space-y-2">
                     <div className="flex items-center gap-2 mb-1">
                         <Lock size={14} className="text-purple-500" />
@@ -136,7 +129,7 @@ export function SharePanel({ secret, params }: Props) {
                     </div>
                     <button
                         onClick={() => setStep('warning')}
-                        className="w-full flex items-center justify-between p-3 bg-white border border-gray-200 hover:border-purple-300 hover:bg-purple-50/50 rounded-lg transition-all group shadow-sm cursor-pointer" // Added cursor-pointer
+                        className="w-full flex items-center justify-between p-3 bg-white border border-gray-200 hover:border-purple-300 hover:bg-purple-50/50 rounded-lg transition-all group shadow-sm cursor-pointer"
                     >
                         <div className="flex flex-col items-start gap-0.5">
                             <span className="text-xs font-semibold text-gray-900 group-hover:text-purple-700">Create Secure Link</span>
@@ -166,13 +159,13 @@ export function SharePanel({ secret, params }: Props) {
                     <div className="pt-2 space-y-2">
                         <button
                             onClick={() => setStep('config')}
-                            className="w-full py-2 bg-gray-900 text-white rounded-lg text-[11px] font-semibold uppercase tracking-wide hover:bg-black transition-colors cursor-pointer" // Added cursor-pointer
+                            className="w-full py-2 bg-gray-900 text-white rounded-lg text-[11px] font-semibold uppercase tracking-wide hover:bg-black transition-colors cursor-pointer"
                         >
                             Continue
                         </button>
                         <button
                             onClick={() => setStep('menu')}
-                            className="block w-full text-[11px] text-gray-400 hover:text-gray-600 font-medium cursor-pointer" // Added cursor-pointer
+                            className="block w-full text-[11px] text-gray-400 hover:text-gray-600 font-medium cursor-pointer"
                         >
                             Cancel
                         </button>
@@ -186,14 +179,13 @@ export function SharePanel({ secret, params }: Props) {
         return (
             <div className="w-full space-y-4 animate-in slide-in-from-right-8 duration-300">
                 <div className="flex items-center gap-2 pb-1 border-b border-gray-100">
-                    <button onClick={() => setStep('warning')} className="p-1 -ml-2 text-gray-400 hover:text-gray-900 cursor-pointer"> {/* Added cursor-pointer */}
+                    <button onClick={() => setStep('warning')} className="p-1 -ml-2 text-gray-400 hover:text-gray-900 cursor-pointer">
                         <ChevronLeft size={18} />
                     </button>
                     <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider">Link Settings</h3>
                 </div>
 
                 <div className="space-y-4">
-                    {/* Expiration Time */}
                     <div className="space-y-2">
                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider ml-1">Valid For</label>
                         <div className="grid grid-cols-3 gap-2">
@@ -202,7 +194,7 @@ export function SharePanel({ secret, params }: Props) {
                                     key={time}
                                     onClick={() => setSecureConfig({ ...secureConfig, expiresIn: time })}
                                     className={clsx(
-                                        "py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer", // Added cursor-pointer
+                                        "py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer",
                                         secureConfig.expiresIn === time
                                             ? "bg-gray-900 text-white border-gray-900 shadow-sm"
                                             : "bg-white text-gray-600 border-gray-200 hover:border-gray-300"
@@ -214,13 +206,12 @@ export function SharePanel({ secret, params }: Props) {
                         </div>
                     </div>
 
-                    {/* Burn After Reading Toggle */}
                     <div className="space-y-2">
                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider ml-1">Restriction</label>
                         <button
                             onClick={() => setSecureConfig({ ...secureConfig, oneTime: !secureConfig.oneTime })}
                             className={clsx(
-                                "w-full flex items-center justify-between p-3 rounded-lg border transition-all cursor-pointer", // Added cursor-pointer
+                                "w-full flex items-center justify-between p-3 rounded-lg border transition-all cursor-pointer",
                                 secureConfig.oneTime
                                     ? "bg-purple-50 border-purple-200 shadow-sm"
                                     : "bg-white border-gray-200 hover:border-gray-300"
@@ -248,7 +239,7 @@ export function SharePanel({ secret, params }: Props) {
                 <button
                     onClick={handleCreateSecureLink}
                     disabled={isCreating}
-                    className="w-full py-2.5 bg-gray-900 text-white rounded-lg text-[11px] font-semibold uppercase tracking-wide hover:bg-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-2 cursor-pointer" // Added cursor-pointer
+                    className="w-full py-2.5 bg-gray-900 text-white rounded-lg text-[11px] font-semibold uppercase tracking-wide hover:bg-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-2 cursor-pointer"
                 >
                     {isCreating ? <Loader2 size={14} className="animate-spin" /> : "Generate Link"}
                 </button>
@@ -267,7 +258,7 @@ export function SharePanel({ secret, params }: Props) {
 
             <UrlCopyBox url={generatedLink} />
 
-            <button onClick={() => setStep('config')} className="text-xs text-gray-400 hover:text-gray-600 font-medium underline underline-offset-2 cursor-pointer"> {/* Added cursor-pointer */}
+            <button onClick={() => setStep('config')} className="text-xs text-gray-400 hover:text-gray-600 font-medium underline underline-offset-2 cursor-pointer">
                 Create another
             </button>
         </div>

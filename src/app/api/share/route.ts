@@ -1,4 +1,3 @@
-// src/app/api/share/route.ts
 import { NextResponse } from 'next/server';
 import { customAlphabet } from 'nanoid';
 import { PrismaClient } from '../../generated/prisma-client'
