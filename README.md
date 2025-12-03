@@ -22,6 +22,7 @@ Generate 2FA tokens in your browser and share them via secure, one-time links wi
 - 📱 **Responsive Design**: Optimized for mobile and desktop, perfect for sharing 2FA access with colleagues or family members.
 - 🛡️ **Privacy Focused**: No user accounts required. No tracking.
 
+
 ## 🛠️ Tech Stack
 
 - **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
@@ -30,6 +31,13 @@ Generate 2FA tokens in your browser and share them via secure, one-time links wi
 - **Database**: PostgreSQL (via Prisma ORM & Prisma Accelerate)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Deployment**: Vercel
+
+## Screenshots
+
+![Screenshot1](/screenshot/image-1.png)
+![Screenshot2](/screenshot/image-2.png)
+![Screenshot3](/screenshot/image-3.png)
+![Screenshot4](/screenshot/image-4.png)
 
 ## 🚀 Getting Started
 
@@ -43,7 +51,7 @@ Generate 2FA tokens in your browser and share them via secure, one-time links wi
 
 1. **Clone the repository**
    ```bash
-   git clone [https://github.com/Kadxy/OTP-share.git](https://github.com/Kadxy/OTP-share.git)
+   git clone https://github.com/Kadxy/OTP-share.git
    cd OTP-share
    ```
 
@@ -53,18 +61,16 @@ Generate 2FA tokens in your browser and share them via secure, one-time links wi
    ```
 
 3. **Configure Environment Variables**
-   Rename `.env.example` to `.env` and add your database connection string. Since this project uses Prisma Accelerate, you need an Accelerate URL:
+   Rename `.env.example` to `.env` and add your database connection string. 
+   Since this project uses Prisma Accelerate, you need an Accelerate URL (You can get it from [Vercel](https://vercel.com/)).
+
    ```env
-   # Direct connection to DB (for migrations)
-   DATABASE_URL="postgres://user:password@host:5432/db?sslmode=require"
-   
-   # Prisma Accelerate URL (for application)
    PRISMA_DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/..."
    ```
 
-4. **Generate Prisma Client**
+4. **Generate Prisma Client & Push Schema to Accelerate**
    ```bash
-   npx prisma generate
+   npx prisma generate && npx prisma push
    ```
 
 5. **Run Development Server**
