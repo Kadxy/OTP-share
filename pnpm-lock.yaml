@@ -14,6 +14,9 @@ importers:
       '@prisma/client':
         specifier: ^7.0.1
         version: 7.0.1(prisma@7.0.1(@types/react@19.2.7)(better-sqlite3@12.5.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3))(typescript@5.9.3)
+      '@prisma/client-runtime-utils':
+        specifier: ^7.1.0
+        version: 7.1.0
       '@prisma/extension-accelerate':
         specifier: ^3.0.1
         version: 3.0.1(@prisma/client@7.0.1(prisma@7.0.1(@types/react@19.2.7)(better-sqlite3@12.5.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3))(typescript@5.9.3))
@@ -503,6 +506,9 @@ packages:
 
   '@prisma/client-runtime-utils@7.0.1':
     resolution: {integrity: sha512-R26BVX9D/iw4toUmZKZf3jniM/9pMGHHdZN5LVP2L7HNiCQKNQQx/9LuMtjepbgRqSqQO3oHN0yzojHLnKTGEw==}
+
+  '@prisma/client-runtime-utils@7.1.0':
+    resolution: {integrity: sha512-39xmeBrNTN40FzF34aJMjfX1PowVCqoT3UKUWBBSP3aXV05NRqGBC3x2wCDs96ti6ZgdiVzqnRDHtbzU8X+lPQ==}
 
   '@prisma/client@7.0.1':
     resolution: {integrity: sha512-O74T6xcfaGAq5gXwCAvfTLvI6fmC3and2g5yLRMkNjri1K8mSpEgclDNuUWs9xj5AwNEMQ88NeD3asI+sovm1g==}
@@ -2905,6 +2911,8 @@ snapshots:
       better-sqlite3: 12.5.0
 
   '@prisma/client-runtime-utils@7.0.1': {}
+
+  '@prisma/client-runtime-utils@7.1.0': {}
 
   '@prisma/client@7.0.1(prisma@7.0.1(@types/react@19.2.7)(better-sqlite3@12.5.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3))(typescript@5.9.3)':
     dependencies:

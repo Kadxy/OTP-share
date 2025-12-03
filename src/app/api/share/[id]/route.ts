@@ -1,13 +1,18 @@
 // src/app/api/share/[id]/route.ts
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { PrismaClient } from '../../../generated/prisma-client'
+import { withAccelerate } from '@prisma/extension-accelerate'
+
+const prisma = new PrismaClient({
+    accelerateUrl: process.env.PRISMA_DATABASE_URL,
+}).$extends(withAccelerate());
 
 // 解决 BigInt 序列化问题 (JSON.stringify 默认不支持 BigInt)
 // @ts-expect-error - Extending BigInt prototype
 BigInt.prototype.toJSON = function () { return Number(this) }
 
 export async function GET(
-    request: Request,
+    _request: Request,
     { params }: { params: Promise<{ id: string }> } // Next.js 15+ params 是 Promise
 ) {
     const { id } = await params;

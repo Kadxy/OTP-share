@@ -2,13 +2,15 @@
 
 <div align="center">
 
-![OTP Share](public/icon.svg)
+<img src="src/app/icon.svg" alt="OTP Share Logo" width="80" height="80" />
 
 **Client-Side Generation · Zero Secret Exposure · Ephemeral Sharing**
 
 Generate 2FA tokens in your browser and share them via secure, one-time links without ever revealing your secret key to the server.
 
-[Demo](https://your-project-url.vercel.app) · [Report Bug](https://github.com/Kadxy/OTP-share/issues) · [Request Feature](https://github.com/Kadxy/OTP-share/issues)
+[Report Bug](https://github.com/Kadxy/OTP-share/issues) · [Request Feature](https://github.com/Kadxy/OTP-share/issues)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FKadxy%2FOTP-share&env=PRISMA_DATABASE_URL,DATABASE_URL)
 
 </div>
 
@@ -25,7 +27,7 @@ Generate 2FA tokens in your browser and share them via secure, one-time links wi
 - **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
 - **Language**: TypeScript
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Database**: PostgreSQL (via Prisma ORM)
+- **Database**: PostgreSQL (via Prisma ORM & Prisma Accelerate)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Deployment**: Vercel
 
@@ -35,7 +37,7 @@ Generate 2FA tokens in your browser and share them via secure, one-time links wi
 
 - Node.js 18+
 - pnpm (recommended) or npm
-- A PostgreSQL database (Local or Vercel Postgres)
+- A PostgreSQL database (e.g., Vercel Postgres, Neon, or local)
 
 ### Installation
 
@@ -44,49 +46,52 @@ Generate 2FA tokens in your browser and share them via secure, one-time links wi
    git clone [https://github.com/Kadxy/OTP-share.git](https://github.com/Kadxy/OTP-share.git)
    cd OTP-share
    ```
-2. Install dependencies
+
+2. **Install dependencies**
    ```bash
    pnpm install
    ```
-3. Configure Environment Variables Rename .env.example to .env (or create one) and add your database connection string:
-   ```bash
-   DATABASE_URL="postgresql://user:password@localhost:5432/otpshare?schema=public"
+
+3. **Configure Environment Variables**
+   Rename `.env.example` to `.env` and add your database connection string. Since this project uses Prisma Accelerate, you need an Accelerate URL:
+   ```env
+   # Direct connection to DB (for migrations)
+   DATABASE_URL="postgres://user:password@host:5432/db?sslmode=require"
+   
+   # Prisma Accelerate URL (for application)
+   PRISMA_DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/..."
    ```
-4. Initialize Database
+
+4. **Generate Prisma Client**
    ```bash
-   npx prisma migrate dev --name init
+   npx prisma generate
    ```
-5. Run Development Server
+
+5. **Run Development Server**
    ```bash
    pnpm dev
    ```
 
-6. Open http://localhost:3000 with your browser.
+   Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-### How It Works
+## 📖 How It Works
 
-Input Secret: User enters their TOTP Secret Key in the browser.
+1. **Input Secret**: User enters their TOTP Secret Key in the browser.
+2. **Local Calculation**: The browser calculates all future TOTP codes for the selected validity period (e.g., next 1 hour).
+3. **Secure Storage**: Only the **generated codes** (not the secret key) are sent to the server and stored in the database.
+4. **Link Generation**: A unique, random 7-character ID is generated.
+5. **Access**: The recipient opens the link and sees the valid code for the current time window.
 
-Local Calculation: The browser calculates all future TOTP codes for the selected validity period (e.g., next 1 hour).
+## 🤝 Contributing
 
-Secure Storage: Only the generated codes (not the secret key) are sent to the server and stored in the database.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-Link Generation: A unique, random 7-character ID is generated.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-Access: The recipient opens the link and sees the valid code for the current time window.
+## 📄 License
 
-### 🤝 Contributing
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
-
-Fork the Project
-
-Create your Feature Branch (git checkout -b feature/AmazingFeature)
-
-Commit your Changes (git commit -m 'Add some AmazingFeature')
-
-Push to the Branch (git push origin feature/AmazingFeature)
-
-Open a Pull Request
-
-📄 License
-Distributed under the MIT License. See LICENSE for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
