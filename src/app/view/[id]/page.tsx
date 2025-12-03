@@ -185,7 +185,7 @@ export default function ViewPage({ params }: ViewPageProps) {
                         <div className="inline-flex items-center gap-1.5 bg-orange-50 px-2.5 py-1 rounded-md border border-orange-200/60 shadow-sm">
                             <Clock size={12} className="text-orange-600" />
                             <span className="text-[11px] font-bold text-orange-700">
-                                {hoursUntilExpiry > 0 ? `${hoursUntilExpiry}h left` : `${minutesUntilExpiry}m left`} ({codeData.codes.length - currentIndex} remaining)
+                                {hoursUntilExpiry > 0 ? `${hoursUntilExpiry}hours left` : `${minutesUntilExpiry}minutes left`}
                             </span>
                         </div>
                     )}
