@@ -30,7 +30,6 @@ export default function ViewPage({ params }: ViewPageProps) {
     const [loading, setLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [timeLeft, setTimeLeft] = useState(30);
-    const router = useRouter();
 
     // Unwrap params
     useEffect(() => {
@@ -103,13 +102,6 @@ export default function ViewPage({ params }: ViewPageProps) {
         const isBurned = error.errorType === 'burned';
         const isExpired = error.errorType === 'expired';
 
-        // 404 Not Found 自动跳转回首页 (符合您的要求：此类404跳转到主页)
-        if (isNotFound) {
-            // 这里做一个简单的延时跳转或直接显示错误带返回按钮
-            // 如果您希望直接无感跳转，可以在 useEffect 里做，但为了用户体验，显示 "Not Found" 后提供按钮更好，
-            // 或者如下所示，给一个友好的错误提示
-        }
-
         const iconColor = isNotFound ? 'text-gray-400' : isBurned ? 'text-purple-600' : 'text-orange-500';
         const bgColor = isNotFound ? 'bg-gray-100' : isBurned ? 'bg-purple-50' : 'bg-orange-50';
         const borderColor = isNotFound ? 'border-gray-200' : isBurned ? 'border-purple-100' : 'border-orange-100';
@@ -117,10 +109,9 @@ export default function ViewPage({ params }: ViewPageProps) {
 
         const title = isNotFound ? 'Link Invalid' : isBurned ? 'Link Burned' : 'Link Expired';
 
-        // 优化副标题：Expired 不显示副标题
         let subtitle = error.error;
-        if (isExpired) subtitle = '';
-        if (isBurned) subtitle = 'This secure link has already been viewed.';
+        if (isExpired) subtitle = 'This link has expired.';
+        if (isBurned) subtitle = 'This link has already been viewed.';
         if (isNotFound) subtitle = 'This link does not exist or has been deleted.';
 
         return (
@@ -185,7 +176,7 @@ export default function ViewPage({ params }: ViewPageProps) {
                         <div className="inline-flex items-center gap-1.5 bg-orange-50 px-2.5 py-1 rounded-md border border-orange-200/60 shadow-sm">
                             <Clock size={12} className="text-orange-600" />
                             <span className="text-[11px] font-bold text-orange-700">
-                                {hoursUntilExpiry > 0 ? `${hoursUntilExpiry}hours left` : `${minutesUntilExpiry}minutes left`}
+                                {hoursUntilExpiry > 0 ? `expires in ${hoursUntilExpiry} hours` : `expires in ${minutesUntilExpiry} minutes`}
                             </span>
                         </div>
                     )}
