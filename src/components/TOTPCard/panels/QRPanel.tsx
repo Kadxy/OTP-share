@@ -1,11 +1,10 @@
 import { QRCodeSVG } from 'qrcode.react';
-import { ShieldCheck } from 'lucide-react'; // 去掉了 ExternalLink
+import { ShieldCheck } from 'lucide-react';
 
 export function QRPanel({ uri }: { uri: string }) {
     return (
         <div className="flex flex-col items-center w-full pt-10 pb-4 animate-in fade-in zoom-in-95 duration-300">
 
-            {/* QR Code Card */}
             <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-lg shadow-gray-100/50">
                 <QRCodeSVG
                     value={uri}

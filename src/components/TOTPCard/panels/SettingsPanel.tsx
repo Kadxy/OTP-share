@@ -15,7 +15,6 @@ export function SettingsPanel({ params, setParams }: SettingsPanelProps) {
     return (
         <div className="w-full flex flex-col justify-center animate-in fade-in zoom-in-95 duration-300 space-y-6">
 
-            {/* Algorithm Selection */}
             <div className="space-y-2">
                 <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider ml-1">
                     Algorithm
@@ -38,7 +37,6 @@ export function SettingsPanel({ params, setParams }: SettingsPanelProps) {
                 </div>
             </div>
 
-            {/* Digits Selection */}
             <div className="space-y-2">
                 <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider ml-1">
                     Digits
@@ -61,7 +59,6 @@ export function SettingsPanel({ params, setParams }: SettingsPanelProps) {
                 </div>
             </div>
 
-            {/* Period Selection */}
             <div className="space-y-2">
                 <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider ml-1">
                     Period

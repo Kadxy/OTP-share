@@ -1,4 +1,3 @@
-// src/app/page.tsx
 import TOTPCard from "@/components/TOTPCard";
 import Image from "next/image";
 import Link from "next/link";

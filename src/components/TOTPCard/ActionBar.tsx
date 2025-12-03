@@ -1,4 +1,3 @@
-// src/components/TOTPCard/ActionBar.tsx
 import { Settings2, QrCode, Share2 } from 'lucide-react';
 import clsx from 'clsx';
 

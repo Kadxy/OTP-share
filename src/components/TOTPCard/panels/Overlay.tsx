@@ -1,4 +1,3 @@
-// src/components/TOTPCard/panels/Overlay.tsx
 import { X } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -23,7 +22,7 @@ export function Overlay({ isOpen, onClose, children }: Props) {
                 <X size={20} />
             </button>
             <div className="h-full w-full flex flex-col items-center justify-center p-8">
-                {isOpen && children} {/* 懒渲染内容 */}
+                {isOpen && children}
             </div>
         </div>
     );

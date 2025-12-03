@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { TokenDisplay } from '@/components/TOTPCard/TokenDisplay';
-import { AlertCircle, XCircle, Flame, Clock, ShieldCheck, Layers, ArrowLeft } from 'lucide-react';
+import { AlertCircle, XCircle, Flame, Clock, ShieldCheck, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 interface ViewPageProps {
     params: Promise<{ id: string }>;
@@ -156,15 +155,12 @@ export default function ViewPage({ params }: ViewPageProps) {
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center p-4">
             <div className="w-full max-w-md">
-                {/* Header Tags - Optimized for Recipient */}
                 <div className="mb-6 flex flex-wrap items-center justify-center gap-2">
-                    {/* Tag 1: Identity */}
                     <div className="inline-flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-md shadow-sm border border-gray-200/60">
                         <ShieldCheck size={12} className="text-green-600" />
                         <span className="text-[11px] font-semibold text-gray-600 uppercase tracking-wide">Secure Code</span>
                     </div>
 
-                    {/* Tag 2: Expiry Status */}
                     {codeData.burnAfterReading ? (
                         <div className="inline-flex items-center gap-1.5 bg-purple-50 px-2.5 py-1 rounded-md border border-purple-200/60 shadow-sm">
                             <Flame size={12} className="text-purple-600" />
@@ -182,7 +178,6 @@ export default function ViewPage({ params }: ViewPageProps) {
                     )}
                 </div>
 
-                {/* TOTP Card */}
                 <TokenDisplay
                     token={currentCode}
                     progress={progress}

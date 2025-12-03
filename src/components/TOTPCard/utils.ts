@@ -21,7 +21,6 @@ function base32Decode(input: string): Buffer {
 }
 
 function generateHOTP(secret: Buffer, counter: number, digits: number, algorithm: string): string {
-    // 将counter转为8字节big-endian (浏览器兼容方式)
     const buffer = new Uint8Array(8);
     let tmpCounter = counter;
     for (let i = 7; i >= 0; i--) {
@@ -29,12 +28,10 @@ function generateHOTP(secret: Buffer, counter: number, digits: number, algorithm
         tmpCounter = Math.floor(tmpCounter / 256);
     }
 
-    // 计算HMAC
     const hmac = createHmac(algorithm.toLowerCase(), secret);
     hmac.update(Buffer.from(buffer));
     const hash = hmac.digest();
 
-    // 动态截取
     const offset = hash[hash.length - 1] & 0x0f;
     const code = (
         ((hash[offset] & 0x7f) << 24) |
@@ -71,6 +68,5 @@ export function calculateCodes(
         }
     }
 
-    console.log("Generated codes:", codes.length, "codes for", count, "periods");
     return codes;
 }
