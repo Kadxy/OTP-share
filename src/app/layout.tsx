@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OTPShare | Secure TOTP Sharing",
+  title: "OTP Share",
   description: "Generate 2FA tokens in your browser. Share temporary access links without revealing your secret key.",
 };
 
